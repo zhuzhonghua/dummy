@@ -1,0 +1,3 @@
+boost just the header files
+just read swf file to memory as classes
+
