@@ -2,59 +2,33 @@
 
 #include "tag_loader.h"
 #include "set_background_color.h"
-#include "movie_definition_sub.h"
-#include "image.h"
-#include "shape_character_def.h"
-
-TagLoader* TagLoader::_inst = NULL;
-
-TagLoader* TagLoader::get()
-{
-	if (!_inst)
-	{
-		_inst = new TagLoader();
-	}
-	return _inst;
-}
-
-TagLoader::LoaderFunction TagLoader::getLoader(int tag)
-{
-	std::map<int, LoaderFunction>::iterator iter=_loaders.find(tag);
-	if (iter != _loaders.end())
-	{
-		return iter->second;
-	}
-	else
-	{
-		return NULL;
-	}
-}
+//#include "movie_definition_sub.h"
+//#include "image.h"
+//#include "shape_character_def.h"
 
 void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* m)
 {
-	LoaderFunction lf = this->getLoader(info.tagType);
-	if (lf)
-	{
-		(*lf)(input, info, m);
-	}
-  else
+  switch(info.tagType)
   {
-    std::printf("no func to load tag %d\n", info.tagType);
+  case Tag::END:
+    endLoader(input, info, m);
+    break;
+  case Tag::SETBACKGROUNDCOLOR:
+    setBackgroundColorLoader(input, info, m);
+    break;
+  case Tag::DEFINEBITSJPEG2:
+    defineBitsJPEG2Loader(input, info, m);
+    break;
+  case Tag::DEFINESHAPE:
+    defineShapeLoader(input, info, m);
+    break;
+  case Tag::PLACEOBJECT2:
+    placeObject2Loader(input, info, m);
+    break;
+  default:
+    printf("unimplemented tagtype %d\n", info.tagType);
+    break;
   }
-}
-
-void TagLoader::addLoader(int tag, LoaderFunction lf)
-{
-	_loaders[tag] = lf;
-}
-
-TagLoader::TagLoader()
-{
-	addLoader(Tag::END,					endLoader);
-	addLoader(Tag::SETBACKGROUNDCOLOR,	setBackgroundColorLoader);
-	addLoader(Tag::DEFINEBITSJPEG2, defineBitsJPEG2Loader);
-	addLoader(Tag::DEFINESHAPE, defineShapeLoader);
-	addLoader(Tag::PLACEOBJECT2, placeObject2Loader);
 }
 
 void TagLoader::endLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
@@ -64,26 +38,26 @@ void TagLoader::endLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m
 
 void TagLoader::setBackgroundColorLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
-	SetBackgroundColor* t = new SetBackgroundColor();
-	t->read(in);
-	m->addExecuteTag(t);
+  SetBackgroundColor* t = new SetBackgroundColor();
+  t->read(in);
+  // m->addExecuteTag(t);
 }
 
 void TagLoader::defineBitsJPEG2Loader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
-	ASSERT(info.tagType == Tag::DEFINEBITSJPEG2);
-	UInt16 chId = in->readUI16();
+  ASSERT(info.tagType == Tag::DEFINEBITSJPEG2);
+  UInt16 chId = in->readUI16();
   std::printf("definebitsjpeg2loader chid=%d\n", chId);
 
-	BitmapInfo* bi=NULL;
-	StreamAdapter sa(in->getUnderlyingStream(), in->getTagEndPosition());
-	Image::RGB* im = Image::readSWFJPEG2(&sa);
+  // BitmapInfo* bi=NULL;
+  // StreamAdapter sa(in->getUnderlyingStream(), in->getTagEndPosition());
+  // Image::RGB* im = Image::readSWFJPEG2(&sa);
 
-	// TODO: create render bi
-	// bi = render::createbitmapinfo()
+  // // TODO: create render bi
+  // // bi = render::createbitmapinfo()
 	
-	BitmapCharacter* ch = new BitmapCharacter(m, bi);
-	m->addBitmapCharacter(chId, ch);
+  // BitmapCharacter* ch = new BitmapCharacter(m, bi);
+  //m->addBitmapCharacter(chId, ch);
 }
 
 void TagLoader::defineShapeLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
@@ -94,15 +68,15 @@ void TagLoader::defineShapeLoader(Stream* in, const TagInfo& info, MovieDefiniti
   Uint16	chId = in->readUI16();
   std::printf("shape_loader: id = %d\n", chId);
 
-  ShapeCharacterDef* ch = new ShapeCharacterDef();
-  ch->read(in, info.tagType, true, m);
+  // ShapeCharacterDef* ch = new ShapeCharacterDef();
+  // ch->read(in, info.tagType, true, m);
 
-  m->addCharacter(chId, ch);
+  // m->addCharacter(chId, ch);
 }
 
 void TagLoader::placeObject2Loader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
-  ASSERT(info.tagType == Tag::PLACEOBJECT2 || info.tagType == Tag::PLACEOBJECT
+  ASSERT(info.tagType == Tag::PLACEOBJECT2 || info.tagType == Tag::PLACEOBJECT ||
          info.tagType == Tag::PLACEOBJECT3);
 
   

@@ -8,10 +8,10 @@ class Character;
 class SetBackgroundColor: public ExecuteTag
 {
 public:
-	void		read(Stream* in);
-	void		execute(Character* m);
-	void		executeState(Character* m);
+  void		read(Stream* in);
+  // void		execute(Character* m);
+  // void		executeState(Character* m);
 
 private:
-	RGBA		_color;
+  RGBA		_color;
 };

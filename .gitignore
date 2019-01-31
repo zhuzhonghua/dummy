@@ -1,0 +1,7 @@
+.projectile
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+dummy
+tmp
