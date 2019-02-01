@@ -5,3 +5,6 @@ Makefile
 cmake_install.cmake
 dummy
 tmp
+GTAGS
+GRTAGS
+GPATH

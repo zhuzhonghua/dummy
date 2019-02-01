@@ -2,9 +2,10 @@
 
 #include "tag_loader.h"
 #include "set_background_color.h"
-//#include "movie_definition_sub.h"
-//#include "image.h"
-//#include "shape_character_def.h"
+#include "movie_definition_sub.h"
+#include "image.h"
+#include "character_def.h"
+#include "render/render.h"
 
 void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* m)
 {
@@ -19,12 +20,12 @@ void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* 
   case Tag::DEFINEBITSJPEG2:
     defineBitsJPEG2Loader(input, info, m);
     break;
-  case Tag::DEFINESHAPE:
-    defineShapeLoader(input, info, m);
-    break;
-  case Tag::PLACEOBJECT2:
-    placeObject2Loader(input, info, m);
-    break;
+  // case Tag::DEFINESHAPE:
+  //   defineShapeLoader(input, info, m);
+  //   break;
+  // case Tag::PLACEOBJECT2:
+  //   placeObject2Loader(input, info, m);
+  //   break;
   default:
     printf("unimplemented tagtype %d\n", info.tagType);
     break;
@@ -33,31 +34,31 @@ void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* 
 
 void TagLoader::endLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
-	
+  printf("tag end load\n");
 }
 
 void TagLoader::setBackgroundColorLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
+  printf("set background color load\n");
   SetBackgroundColor* t = new SetBackgroundColor();
   t->read(in);
-  // m->addExecuteTag(t);
+  m->addExecuteTag(t);
 }
 
 void TagLoader::defineBitsJPEG2Loader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
   ASSERT(info.tagType == Tag::DEFINEBITSJPEG2);
   UInt16 chId = in->readUI16();
-  std::printf("definebitsjpeg2loader chid=%d\n", chId);
+  std::printf("definebitsjpeg2 load chid=%d\n", chId);
 
-  // BitmapInfo* bi=NULL;
-  // StreamAdapter sa(in->getUnderlyingStream(), in->getTagEndPosition());
-  // Image::RGB* im = Image::readSWFJPEG2(&sa);
+  BitmapInfo* bi=NULL;
+  StreamAdapter sa(in->getUnderlyingStream(), in->getTagEndPosition());
+  Image::RGB* im = Image::readSWFJPEG2(&sa);
 
-  // // TODO: create render bi
-  // // bi = render::createbitmapinfo()
+  bi = Render::createBitmapInfoRGB(im);
 	
-  // BitmapCharacter* ch = new BitmapCharacter(m, bi);
-  //m->addBitmapCharacter(chId, ch);
+  BitmapCharacter* ch = new BitmapCharacter(m, bi);
+  m->addBitmapCharacter(chId, ch);
 }
 
 void TagLoader::defineShapeLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)

@@ -4,7 +4,8 @@ project(dummy)
 
 aux_source_directory(swf DIR_SWF)
 aux_source_directory(swf/base DIR_BASE)
-set(DUMMYSRC main.cpp ${DIR_SWF} ${DIR_BASE})
+aux_source_directory(render RENDER_BASE)
+set(DUMMYSRC main.cpp ${DIR_SWF} ${DIR_BASE} ${RENDER_BASE})
 
 SET(TOP ${PROJECT_SOURCE_DIR})
 
@@ -17,7 +18,7 @@ set(SDL2_LIBRARIES "-L/usr/lib/x86_64-linux-gnu -lSDL2 -lfreetype -lSDL2_ttf -lS
 
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS}  ${SDL2_INCLUDE_DIRS})
 
-include_directories(swf swf/base deps/zlib deps/jpeg deps deps/regex)
+include_directories(. swf swf/base deps/zlib deps/jpeg deps deps/regex)
 
 ADD_DEFINITIONS(-DHAVE_CONFIG_H -DPCRE_STATIC -DSUPPORT_UTF -DSUPPORT_UTF8)
 
