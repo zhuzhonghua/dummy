@@ -56,7 +56,7 @@ bool MovieDefImpl::readHead(File* file)
   _initActionList.resize(_frameCount);
 
   std::printf("read header %d %d %d version %d\n", header[0], header[1], header[2], _version);
-  std::printf("framecount %d\n", _frameCount);
+  std::printf("framecount %d _frameRate %f\n", _frameCount, _frameRate);
 
   //readTags();
 

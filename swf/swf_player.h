@@ -1,5 +1,7 @@
 #pragma once
 
+#include "display_list.h"
+
 class MovieDefImpl;
 
 class SWFPlayer{
@@ -13,7 +15,13 @@ public:
 
   int getWidth();
   int getHeight();
+  float getFrameRate();
+  
+  void advance();
+  void display();
 protected:
   File _file;
   MovieDefImpl* _mdef;
+
+  DisplayList _playList;
 };

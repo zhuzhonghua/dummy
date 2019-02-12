@@ -27,19 +27,19 @@ void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* 
   //   placeObject2Loader(input, info, m);
   //   break;
   default:
-    printf("unimplemented tagtype %d\n", info.tagType);
+    ERROR("unimplemented tagtype %d", info.tagType);
     break;
   }
 }
 
 void TagLoader::endLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
-  printf("tag end load\n");
+  INFO("tag end load");
 }
 
 void TagLoader::setBackgroundColorLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
-  printf("set background color load\n");
+  INFO("set background color load");
   SetBackgroundColor* t = new SetBackgroundColor();
   t->read(in);
   m->addExecuteTag(t);

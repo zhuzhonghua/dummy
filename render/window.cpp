@@ -27,7 +27,7 @@ void Window::init(const std::string&title)
   
   _p->readTags();
   
-  _fpsLimiter.setMaxFPS(60.0f);
+  _fpsLimiter.setMaxFPS(_p->getFrameRate());
 }
 
 void Window::run()
@@ -40,8 +40,8 @@ void Window::run()
     SDL_RenderClear(_renderer);
     
     processInput();
-    update();
-    draw();
+    _p->advance();
+    _p->display();
     
     SDL_RenderPresent(_renderer);
     
@@ -52,14 +52,6 @@ void Window::run()
   SDL_DestroyWindow(_window);
   SDL_DestroyRenderer(_renderer);
   SDL_Quit();
-}
-
-void Window::draw()
-{
-}
-
-void Window::update()
-{    
 }
 
 void Window::processInput()

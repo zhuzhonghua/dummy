@@ -10,8 +10,6 @@ public:
   void run();
 
 protected:
-  void update();
-  void draw();
   void processInput();  
 protected:
   bool _exit;

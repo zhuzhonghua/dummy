@@ -13,12 +13,10 @@ SWFPlayer::~SWFPlayer()
   delete _mdef;
 }
 
-// void SWFPlayer::loadFile(const std::string& file)
-// {
-//   File f(file.c_str());
-//   MovieDefImpl* m = new MovieDefImpl();
-//   m->read(&f); 
-// }
+float SWFPlayer::getFrameRate()
+{
+  return _mdef->getFrameRate();
+}
 
 int SWFPlayer::getWidth()
 {
@@ -38,4 +36,12 @@ void SWFPlayer::readHead()
 void SWFPlayer::readTags()
 {
   _mdef->readTags();
+}
+
+void SWFPlayer::advance()
+{
+}
+
+void SWFPlayer::display()
+{
 }

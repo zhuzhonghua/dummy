@@ -23,7 +23,6 @@ public:
   void readTags();
 
   float	getFrameRate() const { return _frameRate; }
-  void	setFrameRate(float rate ){ _frameRate = rate; }
   float	getWidthPixels() const { return ceilf(TWIPS_TO_PIXELS(_frameSize.width())); }
   float	getHeightPixels() const { return ceilf(TWIPS_TO_PIXELS(_frameSize.height())); }
 
