@@ -16,12 +16,15 @@ public:
   int getWidth();
   int getHeight();
   float getFrameRate();
-  
+
+  void setBGColor(RGBA color);
   void advance();
   void display();
 protected:
   File _file;
   MovieDefImpl* _mdef;
 
+  RGBA _bgColor;
+  
   DisplayList _playList;
 };

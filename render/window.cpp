@@ -35,9 +35,6 @@ void Window::run()
   SDL_StartTextInput();	
   while(_exit == false){
     _fpsLimiter.begin();
-
-    SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
-    SDL_RenderClear(_renderer);
     
     processInput();
     _p->advance();

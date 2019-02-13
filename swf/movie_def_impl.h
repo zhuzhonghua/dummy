@@ -6,6 +6,7 @@ class File;
 class Stream;
 class ExecuteTag;
 class BitmapCharacterDef;
+class SWFPlayer;
 
 class MovieDefImpl:public MovieDefinitionSub
 {
@@ -18,7 +19,7 @@ public:
     else return MovieDefinitionSub::is(classId);
   }
 		
-  MovieDefImpl();
+  MovieDefImpl(SWFPlayer* player);
   bool readHead(File* f);
   void readTags();
 
@@ -33,7 +34,9 @@ public:
   virtual void	addBitmapCharacter(int character_id, BitmapCharacterDef* ch);
   virtual void	addCharacter(int character_id, CharacterDef* c) { ASSERT(c); _characters.insert(std::make_pair(character_id, c)); }
   virtual void	addBitmapInfo(BitmapInfo* bi);
+  virtual void  setBackgroundColor(RGBA color);
 private:
+  SWFPlayer* _player;
   int	_version;
   int _fileEndPos;
 

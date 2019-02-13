@@ -21,3 +21,9 @@ BitmapInfo* Render::createBitmapInfoRGB(Image::RGB* im)
 
   return bi;
 }
+
+void Render::setBGColor(RGBA c)
+{
+  SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);
+  SDL_RenderClear(renderer);
+}

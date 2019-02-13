@@ -19,11 +19,7 @@ public:
   {
   }
 	
-  int	getLoadingFrame() const
-  {
-    ASSERT(_loadingFrame >= 0 && _loadingFrame <= _frameCount);
-    return _loadingFrame; 
-  }
+  int	getLoadingFrame() const { return _loadingFrame; }
   void	incLoadingFrame()	{ _loadingFrame++;	}
   virtual int	getFrameCount() { return _frameCount; }
   void	setFrameCount(int frames)
@@ -44,6 +40,7 @@ public:
   virtual void	addBitmapCharacter(int character_id, BitmapCharacterDef* ch) = 0;
   virtual void	addCharacter(int id, CharacterDef* ch) = 0;
   virtual void	addBitmapInfo(BitmapInfo* ch) = 0;
+  virtual void  setBackgroundColor(RGBA color) = 0;
 protected:
   int	_frameCount;
   int	_loadingFrame;

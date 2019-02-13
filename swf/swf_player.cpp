@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "movie_def_impl.h"
 #include "swf_player.h"
+#include "render/render.h"
 
 SWFPlayer::SWFPlayer(const std::string& f)
   :_file(f.c_str())
 {
-  _mdef = new MovieDefImpl();
+  _mdef = new MovieDefImpl(this);
 }
 
 SWFPlayer::~SWFPlayer()
@@ -44,4 +45,10 @@ void SWFPlayer::advance()
 
 void SWFPlayer::display()
 {
+  Render::setBGColor(_bgColor);
+}
+
+void SWFPlayer::setBGColor(RGBA color)
+{
+  _bgColor = color;
 }

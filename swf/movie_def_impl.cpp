@@ -5,9 +5,11 @@
 #include "tag_loader.h"
 //#include "movie.h"
 //#include "sprite_instance.h"
+#include "swf_player.h"
 
-MovieDefImpl::MovieDefImpl()
+MovieDefImpl::MovieDefImpl(SWFPlayer* player)
 {
+  _player = player;
 }
 
 bool MovieDefImpl::readHead(File* file)
@@ -126,4 +128,9 @@ void MovieDefImpl::addBitmapCharacter(int character_id, BitmapCharacterDef* ch)
 void MovieDefImpl::addBitmapInfo(BitmapInfo* bi)
 {
   _bitmapList.push_back(bi);
+}
+
+void MovieDefImpl::setBackgroundColor(RGBA color)
+{
+  _player->setBGColor(color);
 }

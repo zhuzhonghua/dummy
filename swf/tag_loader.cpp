@@ -40,9 +40,10 @@ void TagLoader::endLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m
 void TagLoader::setBackgroundColorLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
   INFO("set background color load");
-  SetBackgroundColor* t = new SetBackgroundColor();
-  t->read(in);
-  m->addExecuteTag(t);
+  SetBackgroundColor t;// = new SetBackgroundColor();
+  t.read(in);
+  m->setBackgroundColor(t.getColor());
+  //m->addExecuteTag(t);
 }
 
 void TagLoader::defineBitsJPEG2Loader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
