@@ -120,6 +120,11 @@ BitmapCharacterDef*	MovieDefImpl::getBitmapCharacter(int character_id)
   return itr->second;
 }
 
+void MovieDefImpl::addCharacter(int character_id, CharacterDef* c)
+{
+  _characters.insert(std::make_pair(character_id, c));
+}
+
 void MovieDefImpl::addBitmapCharacter(int character_id, BitmapCharacterDef* ch)
 {
   _bitmapCharacters.insert(std::make_pair(character_id, ch));

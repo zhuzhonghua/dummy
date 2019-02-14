@@ -6,6 +6,7 @@
 #include "image.h"
 #include "character_def.h"
 #include "render/render.h"
+#include "shape_character_def.h"
 
 void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* m)
 {
@@ -20,9 +21,9 @@ void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* 
   case Tag::DEFINEBITSJPEG2:
     defineBitsJPEG2Loader(input, info, m);
     break;
-  // case Tag::DEFINESHAPE:
-  //   defineShapeLoader(input, info, m);
-  //   break;
+   case Tag::DEFINESHAPE:
+     defineShapeLoader(input, info, m);
+     break;
   // case Tag::PLACEOBJECT2:
   //   placeObject2Loader(input, info, m);
   //   break;
@@ -68,12 +69,12 @@ void TagLoader::defineShapeLoader(Stream* in, const TagInfo& info, MovieDefiniti
          info.tagType == Tag::DEFINESHAPE3 || info.tagType == Tag::DEFINESHAPE4);
 
   Uint16	chId = in->readUI16();
-  std::printf("shape_loader: id = %d\n", chId);
+  INFO("shape_loader: id = %d", chId);
 
-  // ShapeCharacterDef* ch = new ShapeCharacterDef();
-  // ch->read(in, info.tagType, true, m);
+  ShapeCharacterDef* ch = new ShapeCharacterDef();
+  ch->read(in, info.tagType, true, m);
 
-  // m->addCharacter(chId, ch);
+  m->addCharacter(chId, ch);
 }
 
 void TagLoader::placeObject2Loader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)

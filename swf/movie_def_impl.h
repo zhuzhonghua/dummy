@@ -32,26 +32,26 @@ public:
   virtual void		addExecuteTag(ExecuteTag* c);
   virtual BitmapCharacterDef*	getBitmapCharacter(int character_id);
   virtual void	addBitmapCharacter(int character_id, BitmapCharacterDef* ch);
-  virtual void	addCharacter(int character_id, CharacterDef* c) { ASSERT(c); _characters.insert(std::make_pair(character_id, c)); }
+  virtual void	addCharacter(int character_id, CharacterDef* c);
   virtual void	addBitmapInfo(BitmapInfo* bi);
   virtual void  setBackgroundColor(RGBA color);
 private:
   SWFPlayer* _player;
-  int	_version;
+  int _version;
   int _fileEndPos;
 
-  int	_loadedLength;
+  int _loadedLength;
 
-  Stream*		_str;
-  File*			_zlibFile;
+  Stream* _str;
+  File*	_zlibFile;
 
-  RECT		_frameSize;
-  float		_frameRate;
+  RECT _frameSize;
+  float _frameRate;
 
-  std::vector<BitmapInfo*>									_bitmapList;
-  std::vector<std::vector<ExecuteTag*> >		_playList;
-  std::vector<std::vector<ExecuteTag*> >		_initActionList;
+  std::vector<BitmapInfo*> _bitmapList;
+  std::vector<std::vector<ExecuteTag*> > _playList;
+  std::vector<std::vector<ExecuteTag*> > _initActionList;
 
-  std::map<int, CharacterDef*>							_characters;
-  std::map<int, BitmapCharacterDef*>				_bitmapCharacters;
+  std::map<int, CharacterDef*> _characters;
+  std::map<int, BitmapCharacterDef*> _bitmapCharacters;
 };
