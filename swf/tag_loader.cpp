@@ -7,6 +7,7 @@
 #include "character_def.h"
 #include "render/render.h"
 #include "shape_character_def.h"
+#include "place_object.h"
 
 void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* m)
 {
@@ -24,9 +25,9 @@ void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* 
    case Tag::DEFINESHAPE:
      defineShapeLoader(input, info, m);
      break;
-  // case Tag::PLACEOBJECT2:
-  //   placeObject2Loader(input, info, m);
-  //   break;
+   case Tag::PLACEOBJECT2:
+     placeObject2Loader(input, info, m);
+     break;
   default:
     ERROR("unimplemented tagtype %d", info.tagType);
     break;
@@ -82,5 +83,9 @@ void TagLoader::placeObject2Loader(Stream* in, const TagInfo& info, MovieDefinit
   ASSERT(info.tagType == Tag::PLACEOBJECT2 || info.tagType == Tag::PLACEOBJECT ||
          info.tagType == Tag::PLACEOBJECT3);
 
+  INFO("placeobject loader tagtype=%d", info.tagType);
   
+  PlaceObject* tag = new PlaceObject();
+  tag->read(in, info.tagType, m->getVersion());
+  m->addExecuteTag(tag);
 }

@@ -29,7 +29,7 @@ void	FillStyle::read(Stream* in, int tag_type, MovieDefinitionSub* md)
 {
   _type = in->readU8();
 
-  INFO("  fill_style read type = 0x%X\n", _type);
+  INFO("  fill_style read type = 0x%X", _type);
 
   if (_type == 0x00)
   {
@@ -83,7 +83,7 @@ void	FillStyle::read(Stream* in, int tag_type, MovieDefinitionSub* md)
       _gradients[i].read(in, tag_type);
     }
 
-    INFO("  gradients: num_gradients = %d\n", num_gradients);
+    INFO("  gradients: num_gradients = %d", num_gradients);
 
     // @@ hack.
     if (num_gradients > 0)
@@ -131,7 +131,7 @@ void	FillStyle::read(Stream* in, int tag_type, MovieDefinitionSub* md)
     // 0x43: non-smoothed clipped bitmap, Flash 8, TODO
 
     int	bitmap_char_id = in->readU16();
-    std::printf("  bitmap_char = %d\n", bitmap_char_id);
+    INFO("  bitmap_char = %d", bitmap_char_id);
 
     // Look up the bitmap character.
     _bitmapCharacter = md->getBitmapCharacter(bitmap_char_id);

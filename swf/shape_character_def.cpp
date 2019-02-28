@@ -247,7 +247,7 @@ static void	readFillStyles(std::vector<FillStyle>* styles, Stream* in, int tag_t
     }
   }
 
-  std::printf("  read_fill_styles: count = %d\n", fill_style_count);
+  INFO("  read_fill_styles: count = %d", fill_style_count);
 
   // Read the styles.
   for (int i = 0; i < fill_style_count; i++)

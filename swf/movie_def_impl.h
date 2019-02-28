@@ -26,7 +26,8 @@ public:
   float	getFrameRate() const { return _frameRate; }
   float	getWidthPixels() const { return ceilf(TWIPS_TO_PIXELS(_frameSize.width())); }
   float	getHeightPixels() const { return ceilf(TWIPS_TO_PIXELS(_frameSize.height())); }
-
+  int   getVersion() { return _version; }
+  
   virtual const std::vector<ExecuteTag*>&	getPlaylist(int frameNumber);
   //virtual Movie*	createInstance();
   virtual void		addExecuteTag(ExecuteTag* c);

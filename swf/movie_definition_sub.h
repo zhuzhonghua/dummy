@@ -34,6 +34,7 @@ public:
     }
   }
 
+  virtual int   getVersion() = 0;
   virtual const std::vector<ExecuteTag*>&	getPlaylist(int frameNumber) = 0;
   virtual void	addExecuteTag(ExecuteTag* c) = 0;
   virtual BitmapCharacterDef*	getBitmapCharacter(int character_id) = 0;
