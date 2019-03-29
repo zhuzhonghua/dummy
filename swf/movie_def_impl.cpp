@@ -57,8 +57,8 @@ bool MovieDefImpl::readHead(File* file)
   _playList.resize(_frameCount);
   _initActionList.resize(_frameCount);
 
-  std::printf("read header %d %d %d version %d\n", header[0], header[1], header[2], _version);
-  std::printf("framecount %d _frameRate %f\n", _frameCount, _frameRate);
+  INFO("read header %d %d %d version %d", header[0], header[1], header[2], _version);
+  INFO("framecount %d _frameRate %f", _frameCount, _frameRate);
 
   //readTags();
 
@@ -72,14 +72,15 @@ void MovieDefImpl::readTags()
     TagInfo info;
     _str->openTag(&info);
 
-    std::printf("read tag %d\n", info.tagType);
+    INFO("\nread tag %d", info.tagType);
     if (info.tagType == Tag::SHOWFRAME)
     {
+      INFO("showframe tagType=%d", info.tagType);
       incLoadingFrame();
     }
     else if (info.tagType == Tag::FILEATTRIBUTES)
     {
-      printf("ignore fileattributes\n");
+      INFO("ignore fileattributes");
     }
     else
     {

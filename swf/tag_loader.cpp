@@ -36,7 +36,7 @@ void TagLoader::loadTag(Stream* input, const TagInfo& info, MovieDefinitionSub* 
 
 void TagLoader::endLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)
 {
-  INFO("tag end load");
+  INFO("tag end load tagType=%d", info.tagType);
 }
 
 void TagLoader::setBackgroundColorLoader(Stream* in, const TagInfo& info, MovieDefinitionSub* m)

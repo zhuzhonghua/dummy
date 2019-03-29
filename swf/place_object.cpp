@@ -235,18 +235,21 @@ void PlaceObject::read(Stream* in, int tagType, int movieVersion)
     {
       // Remove whatever's at m_depth, and put m_character there.
       placeType = REPLACE;
+      INFO("  placeType REPLACE");
     }
     else if (has_char == false && flag_move == true)
     {
       // Moves the object at m_depth to the new location.
       placeType = MOVE;
+      INFO("  placeType MOVE");
     }
     else if (has_char == true && flag_move == false)
     {
       // Put m_character at m_depth.
       placeType = PLACE;
+      INFO("  placeType PLACE");
     }
 
-    INFO("place object at depth %i\n", depth);
+    INFO("  place object at depth %i\n", depth);
   }
 }
