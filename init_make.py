@@ -5,12 +5,13 @@ import os
 import re
 
 #all src dirs
-dirs = ". swf swf/base render"
+dirs = [".", "swf", "swf/base", "render"]
+
 temp_dir = "temp"
 target = "dummy"
 cpp_flags = os.popen("sdl2-config --cflags").read().replace("\n","")+" -Wall -g2 -ggdb -O0 -I. -Iswf -Iswf/base -Ideps/zlib -Ideps/jpeg -Ideps -Ideps/regex" + " -DHAVE_CONFIG_H -DPCRE_STATIC -DSUPPORT_UTF -DSUPPORT_UTF8 "
 
-cpp_libs = os.popen("sdl2-config --libs").read().replace("\n","")+" -lfreetype -lSDL2_ttf -lSDL2_mixer -lSDL2_image"
+cpp_libs = os.popen("sdl2-config --libs").read().replace("\n","")+" -lfreetype -lSDL2_ttf -lSDL2_mixer -lSDL2_image -lm -lstdc++"
 
 zlib_src = """
 deps/zlib/adler32.c
@@ -112,10 +113,10 @@ if not os.path.exists(temp_dir):
 	
 #########################################
 #split line
-for one_dir in dirs.split():
-	cpp_files = cpp_files + [cpp for cpp in os.listdir(one_dir) if cpp.endswith('.cpp') or cpp.endswith('.c') or cpp.endswith('.cc')]
+for one_dir in dirs:
+	cpp_files = cpp_files + [one_dir+"/"+cpp for cpp in os.listdir(one_dir) if cpp.endswith('.cpp') or cpp.endswith('.c') or cpp.endswith('.cc')]
 
-get_temp_o = lambda cpp:temp_dir+"/"+cpp.replace(".cpp",".o").replace(".c",".o").replace(".cc",".o").replace("/",".")
+get_temp_o = lambda cpp:temp_dir+"/"+cpp.replace("./","").replace(".cpp",".o").replace(".cc",".o").replace(".c",".o").replace("/",".")
 	
 objs = list(map(get_temp_o, cpp_files))
 
@@ -143,7 +144,7 @@ def write_temp_o(make_file, cpp_files):
 	
 target_cmd = """
 $(TARGET):$(OBJS)
-	gcc $(OBJS) -o $@ $(CPPLIBS)
+	gcc $(OBJS) -o $@ $(CPPLIBS) $(CPPFLAGS)
 """.replace("$(TARGET)", target).replace("$(OBJS)", " ".join(objs))
 
 clean_cmd = """
