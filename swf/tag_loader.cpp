@@ -68,13 +68,13 @@ void TagLoader::defineShapeLoader(Stream* in, const TagInfo& info, MovieDefiniti
 {
   ASSERT(info.tagType == Tag::DEFINESHAPE || info.tagType == Tag::DEFINESHAPE2 ||
          info.tagType == Tag::DEFINESHAPE3 || info.tagType == Tag::DEFINESHAPE4);
-
+	
   Uint16	chId = in->readUI16();
   INFO("shape_loader: id = %d", chId);
-
+	
   ShapeCharacterDef* ch = new ShapeCharacterDef();
   ch->read(in, info.tagType, true, m);
-
+	
   m->addCharacter(chId, ch);
 }
 

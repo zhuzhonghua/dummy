@@ -285,6 +285,7 @@ static void	readLineStyles(std::vector<LineStyle>* styles, Stream* in, int tag_t
 
 void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDefinitionSub* m)
 {
+	INFO("  with_style %d", with_style);
   if (with_style)
   {
     _bound.read(in);
@@ -326,11 +327,15 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
   // SHAPERECORDS
   for (;;) {
     int	type_flag = in->readUint(1);
+		INFO("  type_flag=%d", type_flag);
     if (type_flag == 0)
     {
       // Parse the record.
       int	flags = in->readUint(5);
-      if (flags == 0) {
+			INFO("  flags=%d", flags);
+			
+      if (flags == 0)
+			{
         // End of shape records.
 
         // Store the current path if any.
@@ -342,6 +347,7 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
 
         break;
       }
+			
       if (flags & 0x01)
       {
         // move_to = 1;
@@ -364,8 +370,8 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
         current_path.ax = x;
         current_path.ay = y;
       }
-      if ((flags & 0x02)
-	  && num_fill_bits > 0)
+			
+      if ((flags & 0x02) && num_fill_bits > 0)
       {
         // fill_style_0_change = 1;
         if (! current_path.isEmpty())
@@ -382,8 +388,8 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
         }
         current_path.fill0 = style;
       }
-      if ((flags & 0x04)
-	  && num_fill_bits > 0)
+			
+      if ((flags & 0x04) && num_fill_bits > 0)
       {
         // fill_style_1_change = 1;
         if (! current_path.isEmpty())
@@ -400,8 +406,8 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
         }
         current_path.fill1 = style;
       }
-      if ((flags & 0x08)
-	  && num_line_bits > 0)
+			
+      if ((flags & 0x08) && num_line_bits > 0)
       {
         // line_style_change = 1;
         if (! current_path.isEmpty())
@@ -418,6 +424,7 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
         }
         current_path.line = style;
       }
+			
       if (flags & 0x10) {
         ASSERT(tag_type >= 22);
 
@@ -452,6 +459,7 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
     {
       // EDGERECORD
       int	edge_flag = in->readUint(1);
+			INFO("  edge_flag=%d", edge_flag);
       if (edge_flag == 0)
       {
         // curved edge

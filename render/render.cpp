@@ -27,3 +27,16 @@ void Render::setBGColor(RGBA c)
   SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);
   SDL_RenderClear(renderer);
 }
+
+void Render::displayBitmapInfo(BitmapInfo* bi)
+{
+	SDL_Rect dst;
+	dst.x = 0;
+	dst.y = 0;
+	dst.w = 100;
+	dst.h = 100;
+			
+	BitmapInfoImpl* bii = dynamic_cast<BitmapInfoImpl*>(bi);
+	SDL_RenderCopy(renderer, bii->getTex(), NULL, &dst);
+}
+

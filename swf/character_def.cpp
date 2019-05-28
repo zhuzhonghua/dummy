@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "character_def.h"
+#include "render/render.h"
 
 BitmapCharacter::BitmapCharacter(MovieDefinition* rdef, BitmapInfo* bi)
     :_bitmapInfo(bi)
@@ -56,4 +57,6 @@ void BitmapCharacter::display(Character* ch)
 
   // TODO:
   std::printf("display bitmapinfo\n");
+
+	Render::displayBitmapInfo(_bitmapInfo);
 }

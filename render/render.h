@@ -11,4 +11,5 @@ public:
   static void setRenderCtx(SDL_Renderer* ren);
   static BitmapInfo* createBitmapInfoRGB(Image::RGB* im);
   static void setBGColor(RGBA color);
+	static void displayBitmapInfo(BitmapInfo* bi);
 };
