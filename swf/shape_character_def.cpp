@@ -506,3 +506,8 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
     }
   }
 }
+
+void ShapeCharacterDef::display(Character* ch)
+{
+	
+}

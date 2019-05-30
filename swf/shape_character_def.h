@@ -42,7 +42,8 @@ class MovieDefinitionSub;
 class ShapeCharacterDef:public CharacterDef{
 public:
   void	read(Stream* in, int tag_type, bool with_style, MovieDefinitionSub* m);
-
+	virtual void display(Character* ch);
+	
 protected:
   // derived morph classes changes these
   std::vector<FillStyle>	_fillStyles;
