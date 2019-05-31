@@ -2,6 +2,8 @@
 
 #include "def.h"
 
+class Character;
+
 class CharacterDef:public ASObjectInterface{
 public:
 	// Unique id of a gameswf resource
@@ -10,6 +12,8 @@ public:
 	{
 		return _classId == classId;
 	}
+
+	virtual void	display(Character* ch) {}
 };
 
 class BitmapCharacterDef:public CharacterDef{

@@ -18,6 +18,8 @@ public:
   PlaceObject();
   ~PlaceObject();
   void		read(Stream* in, int tagType, int movieVersion);
+
+	virtual void	execute(Character* ch);
 public:
   int	tagType;
   std::string	characterName;

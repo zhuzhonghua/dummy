@@ -253,3 +253,8 @@ void PlaceObject::read(Stream* in, int tagType, int movieVersion)
     INFO("  place object at depth %i\n", depth);
   }
 }
+
+void PlaceObject::execute(Character* ch)
+{
+	
+}

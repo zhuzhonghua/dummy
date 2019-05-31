@@ -21,6 +21,7 @@ public:
 class MovieDefinitionSub;
 class BitmapCharacterDef;
 class BitmapInfo;
+class Character;
 
 class FillStyle : public BaseFillStyle
 // For the interior of outline shapes.
@@ -42,6 +43,7 @@ public:
   // For shape morphing
   void	setLerp(const FillStyle& a, const FillStyle& b, float t);
 
+	void display(Character* ch);
 private:
   int	_type;
   Uint8 _blendMode;

@@ -509,5 +509,9 @@ void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDef
 
 void ShapeCharacterDef::display(Character* ch)
 {
-	
+	// display fillstyle
+	for (int i=0; i<_fillStyles.size(); i++)
+	{
+		_fillStyles[i].display(ch);
+	}
 }

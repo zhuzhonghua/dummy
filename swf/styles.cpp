@@ -2,6 +2,7 @@
 
 #include "styles.h"
 #include "movie_definition_sub.h"
+#include "character.h"
 
 GradientRecord::GradientRecord():_ratio(0)
 {
@@ -150,6 +151,21 @@ void	FillStyle::read(Stream* in, int tag_type, MovieDefinitionSub* md)
   }
 }
 
+void FillStyle::display(Character* ch)
+{
+	if (_type >= 0x40 && _type <= 0x43)
+	{
+		// 0x40: tiled bitmap fill
+    // 0x41: clipped bitmap fill
+    // 0x42: non-smoothed repeating bitmap, Flash 8, TODO
+    // 0x43: non-smoothed clipped bitmap, Flash 8, TODO
+		if (_bitmapCharacter)
+		{
+			//BitmapInfo* bi = _bitmapCharacter->getBitmapInfo();
+			_bitmapCharacter->display(ch);
+		}
+	}
+}
 
 LineStyle::LineStyle()
 		:
