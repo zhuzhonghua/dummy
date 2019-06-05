@@ -54,3 +54,13 @@ public:
   //virtual float	getHeight();
   //virtual float	getWidth();
 };
+
+class CharacterDef;
+
+class GenericCharacter : public Character{
+public:
+
+	virtual void display();
+protected:
+	CharacterDef* _def;
+};

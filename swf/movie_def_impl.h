@@ -6,7 +6,7 @@ class File;
 class Stream;
 class ExecuteTag;
 class BitmapCharacterDef;
-class SWFPlayer;
+class SpriteInstance;
 
 class MovieDefImpl:public MovieDefinitionSub
 {
@@ -19,7 +19,7 @@ public:
     else return MovieDefinitionSub::is(classId);
   }
 		
-  MovieDefImpl(SWFPlayer* player);
+  MovieDefImpl(SpriteInstance* sprite);
   bool readHead(File* f);
   void readTags();
 
@@ -37,7 +37,7 @@ public:
   virtual void	addBitmapInfo(BitmapInfo* bi);
   virtual void  setBackgroundColor(RGBA color);
 private:
-  SWFPlayer* _player;
+  SpriteInstance* _sprite;
   int _version;
   int _fileEndPos;
 

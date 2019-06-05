@@ -1,8 +1,6 @@
 #pragma once
 
-#include "display_list.h"
-
-class MovieDefImpl;
+class SpriteInstance;
 
 class SWFPlayer{
 public:
@@ -17,14 +15,9 @@ public:
   int getHeight();
   float getFrameRate();
 
-  void setBGColor(RGBA color);
   void advance();
   void display();
 protected:
   File _file;
-  MovieDefImpl* _mdef;
-
-  RGBA _bgColor;
-  
-  DisplayList _playList;
+  SpriteInstance* _sprite;
 };

@@ -256,5 +256,9 @@ void PlaceObject::read(Stream* in, int tagType, int movieVersion)
 
 void PlaceObject::execute(Character* ch)
 {
-	
+	switch(placeType)
+	{
+	case PlaceType::PLACE:
+		break;
+	}
 }
