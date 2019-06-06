@@ -41,6 +41,8 @@ public:
 class MovieDefinitionSub;
 class ShapeCharacterDef:public CharacterDef{
 public:
+	ShapeCharacterDef();
+	~	ShapeCharacterDef();
   void	read(Stream* in, int tag_type, bool with_style, MovieDefinitionSub* m);
 	virtual void display(Character* ch);
 	

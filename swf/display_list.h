@@ -42,6 +42,11 @@ public:
   // display the referenced characters.
   void	display();
   void	display(const DisplayInfo& di);
+
+	void	addDisplayObject(Character* ch, int depth);
+
+protected:
+	int findIndexByDepth(int depth);
 private:
   void remove(int index);
   std::vector<DisplayObjectInfo> _displayObjectArray;

@@ -40,6 +40,8 @@ public:
     else return ASObject::is(classId);
   }
 
+	
+	Character(Character* parent, int id);
   virtual ~Character() {}
   virtual void	setBackgroundColor(const RGBA& color) {}
 
@@ -53,13 +55,23 @@ public:
   virtual void	executeFrameTags(int frame, bool stateOnly = false) {}
   //virtual float	getHeight();
   //virtual float	getWidth();
+
+	virtual void	addDisplayObject(int characterId, int depth) {}
+
+	void setDepth(int depth) { _depth = depth; }
+	int getDepth() { return _depth; }
+	
+protected:
+	int _depth;
+	int _id;
+	Character* _parent;
 };
 
 class CharacterDef;
 
 class GenericCharacter : public Character{
 public:
-
+	GenericCharacter(CharacterDef* def, Character* parent, int id);
 	virtual void display();
 protected:
 	CharacterDef* _def;

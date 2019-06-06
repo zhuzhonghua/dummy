@@ -27,6 +27,8 @@ public:
 
   void setBGColor(RGBA color);
 	RGBA getBGColor() { return _bgColor; }
+
+	virtual void	addDisplayObject(int characterId, int depth);
 protected:
 	MovieDefImpl* _mdef;
 

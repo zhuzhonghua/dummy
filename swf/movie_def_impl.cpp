@@ -125,6 +125,17 @@ void MovieDefImpl::addCharacter(int character_id, CharacterDef* c)
   _characters.insert(std::make_pair(character_id, c));
 }
 
+CharacterDef* MovieDefImpl::getCharacter(int chId)
+{
+	std::map<int, CharacterDef*>::iterator itr = _characters.find(chId);
+	if(itr == _characters.end())
+	{
+		return NULL;
+	}
+
+	return itr->second;
+}
+
 void MovieDefImpl::addBitmapCharacter(int character_id, BitmapCharacterDef* ch)
 {
   _bitmapCharacters.insert(std::make_pair(character_id, ch));

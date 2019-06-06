@@ -2,6 +2,23 @@
 
 #include "character_def.h"
 #include "render/render.h"
+#include "character.h"
+
+
+Character* CharacterDef::getCharacterInst(Character* ch, int id)
+{
+	if (_chInst == NULL)
+	{
+		_chInst = createCharacterInst(ch, id);
+	}
+
+	return _chInst;
+}
+
+Character* CharacterDef::createCharacterInst(Character* parent, int id)
+{
+	return new GenericCharacter(this, parent, id);
+}
 
 BitmapCharacter::BitmapCharacter(MovieDefinition* rdef, BitmapInfo* bi)
     :_bitmapInfo(bi)

@@ -46,4 +46,5 @@ void SWFPlayer::advance()
 void SWFPlayer::display()
 {
   Render::setBGColor(_sprite->getBGColor());
+	//TODO: sprite instance display
 }

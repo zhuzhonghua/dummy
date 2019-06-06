@@ -4,6 +4,7 @@
 #include "movie_def_impl.h"
 
 SpriteInstance::SpriteInstance(SWFPlayer* player, File* file)
+	:Character(NULL, -1)
 {
 	_player = player;
 	_file = file;
@@ -44,4 +45,16 @@ void SpriteInstance::readTags()
 void SpriteInstance::setBGColor(RGBA color)
 {
 	_bgColor = color;
+}
+
+void SpriteInstance::addDisplayObject(int characterId, int depth)
+{
+	CharacterDef* chDef = _mdef->getCharacter(characterId);
+	if(chDef == NULL)
+	{
+		return;
+	}
+
+	Character* ch = chDef->getCharacterInst(this, characterId);
+	_playList.addDisplayObject(ch, depth);
 }

@@ -283,6 +283,22 @@ static void	readLineStyles(std::vector<LineStyle>* styles, Stream* in, int tag_t
   }
 }
 
+ShapeCharacterDef::ShapeCharacterDef()
+	:_chInst(NULL)
+{	
+}
+
+ShapeCharacterDef::~ShapeCharacterDef()
+{
+	if(_chInst != null)
+	{
+		//*Attention*
+		//if _chInst is put to displaylist, then make sure it is removed first
+		delete _chInst;
+		_chInst = NULL;
+	}
+}
+
 void ShapeCharacterDef::read(Stream* in, int tag_type, bool with_style, MovieDefinitionSub* m)
 {
 	INFO("  with_style %d", with_style);

@@ -34,6 +34,8 @@ public:
   virtual BitmapCharacterDef*	getBitmapCharacter(int character_id);
   virtual void	addBitmapCharacter(int character_id, BitmapCharacterDef* ch);
   virtual void	addCharacter(int character_id, CharacterDef* c);
+	CharacterDef* getCharacter(int chId);
+	
   virtual void	addBitmapInfo(BitmapInfo* bi);
   virtual void  setBackgroundColor(RGBA color);
 private:

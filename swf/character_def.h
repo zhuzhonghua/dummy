@@ -14,6 +14,14 @@ public:
 	}
 
 	virtual void	display(Character* ch) {}
+	//TODO: no need id, id should be same with def
+	Character* getCharacterInst(Character* ch, int id);
+
+protected:
+	virtual Character* createCharacterInst(Character* parent, int id);
+
+protected:
+	Character* _chInst;
 };
 
 class BitmapCharacterDef:public CharacterDef{
