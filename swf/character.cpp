@@ -11,7 +11,7 @@ Character::Character(Character* parent, int id)
 	
 }
 
-GenGenericCharacter::GenericCharacter(CharacterDef* def, Character* parent, int id)
+GenericCharacter::GenericCharacter(CharacterDef* def, Character* parent, int id)
 	:Character(parent, id),
 	 _def(def)
 {

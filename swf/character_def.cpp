@@ -4,6 +4,21 @@
 #include "render/render.h"
 #include "character.h"
 
+CharacterDef::CharacterDef()
+	:_chInst(NULL)
+{
+}
+
+CharacterDef::~CharacterDef()
+{
+	if(_chInst != NULL)
+	{
+		//*Attention*
+		//if _chInst is put to displaylist, then make sure it is removed first
+		delete _chInst;
+		_chInst = NULL;
+	}
+}
 
 Character* CharacterDef::getCharacterInst(Character* ch, int id)
 {
@@ -73,7 +88,8 @@ void BitmapCharacter::display(Character* ch)
   uvCoords._y_max = 1.0f;
 
   // TODO:
-  std::printf("display bitmapinfo\n");
+	// DONE
+  //std::printf("display bitmapinfo\n");
 
 	Render::displayBitmapInfo(_bitmapInfo);
 }

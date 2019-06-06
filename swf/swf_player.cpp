@@ -41,10 +41,12 @@ void SWFPlayer::readTags()
 
 void SWFPlayer::advance()
 {
+	_sprite->advance();
 }
 
 void SWFPlayer::display()
 {
   Render::setBGColor(_sprite->getBGColor());
 	//TODO: sprite instance display
+	_sprite->display();
 }

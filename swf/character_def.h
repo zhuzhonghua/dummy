@@ -13,6 +13,9 @@ public:
 		return _classId == classId;
 	}
 
+	CharacterDef();
+	~CharacterDef();
+	
 	virtual void	display(Character* ch) {}
 	//TODO: no need id, id should be same with def
 	Character* getCharacterInst(Character* ch, int id);

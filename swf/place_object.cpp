@@ -3,6 +3,7 @@
 #include "place_object.h"
 #include "filters.h"
 #include "swf_action.h"
+#include "character.h"
 
 PlaceObject::PlaceObject()
   :tagType(0), ratio(0), hasMatrix(false), hasCXForm(false), depth(0),
@@ -259,6 +260,8 @@ void PlaceObject::execute(Character* ch)
 	switch(placeType)
 	{
 	case PlaceType::PLACE:
+		ch->addDisplayObject(characterId, depth);
 		break;
+		//TODO: other type
 	}
 }

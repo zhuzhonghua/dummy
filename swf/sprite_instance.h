@@ -29,13 +29,22 @@ public:
 	RGBA getBGColor() { return _bgColor; }
 
 	virtual void	addDisplayObject(int characterId, int depth);
+  virtual void	executeFrameTags(int frame, bool stateOnly = false);
+	
+	int getCurrentFrame() { return _currentFrame; }
+	int getFrameCount();
+
+	void advance();
+	void display();
 protected:
 	MovieDefImpl* _mdef;
 
 	SWFPlayer* _player;
 	File* _file;
 
-	RGBA _bgColor;
-  
+protected:
+	RGBA _bgColor;  
   DisplayList _playList;
+
+	int _currentFrame;
 };

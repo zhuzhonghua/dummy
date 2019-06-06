@@ -2,9 +2,11 @@
 
 #include "sprite_instance.h"
 #include "movie_def_impl.h"
+#include "execute_tag.h"
 
 SpriteInstance::SpriteInstance(SWFPlayer* player, File* file)
-	:Character(NULL, -1)
+	:Character(NULL, -1),
+	 _currentFrame(0)
 {
 	_player = player;
 	_file = file;
@@ -57,4 +59,34 @@ void SpriteInstance::addDisplayObject(int characterId, int depth)
 
 	Character* ch = chDef->getCharacterInst(this, characterId);
 	_playList.addDisplayObject(ch, depth);
+}
+
+void SpriteInstance::executeFrameTags(int frame, bool stateOnly)
+{
+	const std::vector<ExecuteTag*>&	playList = _mdef->getPlaylist(frame);
+	for(int i=0; i<playList.size(); i++)
+	{
+		ExecuteTag* eTag = playList[i];
+		eTag->execute(this);
+	}
+}
+
+int SpriteInstance::getFrameCount()
+{
+	return _mdef->getFrameCount();
+}
+
+void SpriteInstance::advance()
+{
+	if(_currentFrame < getFrameCount())
+	{
+		executeFrameTags(_currentFrame);
+		
+		_currentFrame++;		
+	}
+}
+
+void SpriteInstance::display()
+{
+	_playList.display();
 }
