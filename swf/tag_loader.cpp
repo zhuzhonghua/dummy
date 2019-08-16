@@ -52,13 +52,16 @@ void TagLoader::defineBitsJPEG2Loader(Stream* in, const TagInfo& info, MovieDefi
 {
   ASSERT(info.tagType == Tag::DEFINEBITSJPEG2);
   UInt16 chId = in->readUI16();
-  std::printf("definebitsjpeg2 load chid=%d\n", chId);
+  INFO("definebitsjpeg2 load chid=%d", chId);
 
   BitmapInfo* bi=NULL;
   StreamAdapter sa(in->getUnderlyingStream(), in->getTagEndPosition());
   Image::RGB* im = Image::readSWFJPEG2(&sa);
 
-  bi = Render::createBitmapInfoRGB(im);
+  //bi = Render::createBitmapInfoRGB(in);//Render::createBitmapInfoRGB(im);
+	bi = Render::createBitmapInfoRGB(im);
+
+	INFO(" width=%d, height=%d", bi->getWidth(), bi->getHeight());
 	
   BitmapCharacter* ch = new BitmapCharacter(m, bi);
   m->addBitmapCharacter(chId, ch);

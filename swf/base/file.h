@@ -26,6 +26,8 @@ class StreamAdapter : public File
 public:
   StreamAdapter(File* underS, int maxPos);
   virtual int 	readBytes(void* bytes, int numBytes);
+
+	
   
   File* s;
   int startPos;
