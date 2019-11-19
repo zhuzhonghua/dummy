@@ -14,5 +14,5 @@ public:
   static BitmapInfo* createBitmapInfoRGB(Image::RGB* im);
 	static BitmapInfo* createBitmapInfoRGB(Stream* in);
   static void setBGColor(RGBA color);
-	static void displayBitmapInfo(BitmapInfo* bi);
+	static void displayBitmapInfo(BitmapInfo* bi, RECT* dst);
 };

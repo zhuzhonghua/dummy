@@ -46,6 +46,13 @@ public:
 		return !(*this == m);
 	}
 public:
+	/*
+		scalex  rorate1 translatex
+		rotate0 scaley  translatey
+
+		x_ = x * scalex + y * rotate1 + translatex
+		y_ = x * rotate0 + y * scaley + translatey
+	 */
 	Float	_m[2][3];
 };
 

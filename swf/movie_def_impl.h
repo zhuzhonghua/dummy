@@ -22,7 +22,8 @@ public:
   MovieDefImpl(SpriteInstance* sprite);
   bool readHead(File* f);
   void readTags();
-
+	static char* getTagName(int tag);
+	
   float	getFrameRate() const { return _frameRate; }
   float	getWidthPixels() const { return ceilf(TWIPS_TO_PIXELS(_frameSize.width())); }
   float	getHeightPixels() const { return ceilf(TWIPS_TO_PIXELS(_frameSize.height())); }

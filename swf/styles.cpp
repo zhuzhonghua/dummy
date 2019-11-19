@@ -135,6 +135,7 @@ void	FillStyle::read(Stream* in, int tag_type, MovieDefinitionSub* md)
     INFO("  bitmap_char = %d", bitmap_char_id);
 
     // Look up the bitmap character.
+		// TODO: maybe bitmapcharacter is null, remove from fillstyle list
     _bitmapCharacter = md->getBitmapCharacter(bitmap_char_id);
 
     Matrix	m;

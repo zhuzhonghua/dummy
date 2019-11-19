@@ -73,23 +73,19 @@ void BitmapCharacter::getBound(RECT* bound)
 }
 
 void BitmapCharacter::display(Character* ch)
-{
-  RECT coords;
-  coords._x_min = 0.0f;
-  coords._x_max = PIXELS_TO_TWIPS(_bitmapInfo->getWidth());
-  coords._y_min = 0.0f;
-  coords._y_max = PIXELS_TO_TWIPS(_bitmapInfo->getHeight());
+{		
+  //RECT coords;
+  //coords._x_min = 0.0f;
+  //coords._x_max = PIXELS_TO_TWIPS(_bitmapInfo->getWidth());
+  //coords._y_min = 0.0f;
+  //coords._y_max = PIXELS_TO_TWIPS(_bitmapInfo->getHeight());
+	//
+	//Matrix m = ch->getWorldMatrix();
+	//m.transform(&coords);
 
-  // show whole picture
-  RECT uvCoords;
-  uvCoords._x_min = 0.0f;
-  uvCoords._x_max = 1.0f;
-  uvCoords._y_min = 0.0f;
-  uvCoords._y_max = 1.0f;
-
-  // TODO:
-	// DONE
-  //std::printf("display bitmapinfo\n");
-
-	Render::displayBitmapInfo(_bitmapInfo);
+	RECT rect;
+	ch->getBound(&rect);
+	rect.twipsToPixels();
+		
+	Render::displayBitmapInfo(_bitmapInfo, &rect);
 }

@@ -20,6 +20,8 @@ public:
 	//TODO: no need id, id should be same with def
 	Character* getCharacterInst(Character* ch, int id);
 
+	virtual void getBound(RECT* bound) { ASSERT(0); }
+	
 protected:
 	virtual Character* createCharacterInst(Character* parent, int id);
 

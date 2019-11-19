@@ -43,7 +43,7 @@ public:
   void	display();
   void	display(const DisplayInfo& di);
 
-	void	addDisplayObject(Character* ch, int depth);
+	void	addDisplayObject(Character* ch, int depth, const Matrix& mat);
 
 protected:
 	int findIndexByDepth(int depth);

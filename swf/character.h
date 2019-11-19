@@ -30,6 +30,8 @@ struct DisplayInfo
   }
 };
 
+class CharacterDef;
+
 class Character:public ASObject{
 public:
   // Unique id of a gameswf resource
@@ -45,6 +47,8 @@ public:
   virtual ~Character() {}
   virtual void	setBackgroundColor(const RGBA& color) {}
 
+	virtual CharacterDef* getCharacterDef() { ASSERT(0); return NULL; }
+	
   // Set to 0 if you don't want the movie to render its
   // background at all.  1 == full opacity.
   virtual void	setBackgroundAlpha(float alpha) {}
@@ -56,23 +60,32 @@ public:
   //virtual float	getHeight();
   //virtual float	getWidth();
 
-	virtual void	addDisplayObject(int characterId, int depth) {}
-
+	virtual void	addDisplayObject(int characterId, int depth, const Matrix& mat) {}
+ 
 	void setDepth(int depth) { _depth = depth; }
 	int getDepth() { return _depth; }
-	
+
+	void setMatrix(const Matrix& mat) { _mat = mat; }
+	Matrix getMatrix() const { return _mat; }
+
+	Matrix getWorldMatrix() const;
+
+	virtual void getBound(RECT* bound);
 protected:
 	int _depth;
 	int _id;
 	Character* _parent;
+
+	Matrix _mat;
 };
 
-class CharacterDef;
 
 class GenericCharacter : public Character{
 public:
 	GenericCharacter(CharacterDef* def, Character* parent, int id);
 	virtual void display();
+
+	virtual CharacterDef* getCharacterDef() { return _def; }
 protected:
 	CharacterDef* _def;
 };

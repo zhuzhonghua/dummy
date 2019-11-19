@@ -49,7 +49,7 @@ void SpriteInstance::setBGColor(RGBA color)
 	_bgColor = color;
 }
 
-void SpriteInstance::addDisplayObject(int characterId, int depth)
+void SpriteInstance::addDisplayObject(int characterId, int depth, const Matrix& mat)
 {
 	CharacterDef* chDef = _mdef->getCharacter(characterId);
 	if(chDef == NULL)
@@ -58,7 +58,7 @@ void SpriteInstance::addDisplayObject(int characterId, int depth)
 	}
 
 	Character* ch = chDef->getCharacterInst(this, characterId);
-	_playList.addDisplayObject(ch, depth);
+	_playList.addDisplayObject(ch, depth, mat);
 }
 
 void SpriteInstance::executeFrameTags(int frame, bool stateOnly)

@@ -90,6 +90,9 @@ void Matrix::read(Stream* in)
 	}
 }
 
+// matrix * vector
+// introduction to linear algebra
+// Ax=b
 void Matrix::transform(Point* result, const Point& p) const
 {
 	result->x = _m[0][0] * p.x + _m[0][1] * p.y + _m[0][2];

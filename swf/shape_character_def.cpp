@@ -523,3 +523,8 @@ void ShapeCharacterDef::display(Character* ch)
 		_fillStyles[i].display(ch);
 	}
 }
+
+void ShapeCharacterDef::getBound(RECT* bound)
+{
+	*bound = _bound;
+}

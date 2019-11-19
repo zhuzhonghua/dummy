@@ -84,11 +84,13 @@ void PlaceObject::read(Stream* in, int tagType, int movieVersion)
     {
       hasMatrix = true;
       matrix.read(in);
+			INFO("  matrix=true");
     }
     if (has_cxform)
     {
       hasCXForm = true;
       colorTransform.readRGBA(in);
+			INFO("  cxform=true");
       //IF_VERBOSE_PARSE(log_msg("  cxform:\n"); m_color_transform.print());
     }
 
@@ -260,7 +262,7 @@ void PlaceObject::execute(Character* ch)
 	switch(placeType)
 	{
 	case PlaceType::PLACE:
-		ch->addDisplayObject(characterId, depth);
+		ch->addDisplayObject(characterId, depth, matrix);
 		break;
 		//TODO: other type
 	}

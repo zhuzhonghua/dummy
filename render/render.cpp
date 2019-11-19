@@ -74,14 +74,20 @@ void Render::setBGColor(RGBA c)
   SDL_RenderClear(renderer);
 }
 
-void Render::displayBitmapInfo(BitmapInfo* bi)
+void Render::displayBitmapInfo(BitmapInfo* bi, RECT* pdst)
 {
+	//SDL_Rect dst;
+	//dst.x = 0;
+	//dst.y = 0;
+	//dst.w = 307;
+	//dst.h = 204;
+
 	SDL_Rect dst;
-	dst.x = 0;
-	dst.y = 0;
-	dst.w = 307;
-	dst.h = 204;
-			
+	dst.x = pdst->xMin();
+	dst.y = pdst->yMin();
+	dst.w = pdst->width();
+	dst.h = pdst->height();
+	
 	BitmapInfoImpl* bii = dynamic_cast<BitmapInfoImpl*>(bi);
 	SDL_RenderCopy(renderer, bii->getTex(), NULL, &dst);
 }

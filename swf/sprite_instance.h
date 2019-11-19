@@ -28,7 +28,7 @@ public:
   void setBGColor(RGBA color);
 	RGBA getBGColor() { return _bgColor; }
 
-	virtual void	addDisplayObject(int characterId, int depth);
+	virtual void	addDisplayObject(int characterId, int depth, const Matrix& mat);
   virtual void	executeFrameTags(int frame, bool stateOnly = false);
 	
 	int getCurrentFrame() { return _currentFrame; }

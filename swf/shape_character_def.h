@@ -45,6 +45,8 @@ public:
 	~	ShapeCharacterDef();
   void	read(Stream* in, int tag_type, bool with_style, MovieDefinitionSub* m);
 	virtual void display(Character* ch);
+
+	virtual void getBound(RECT* bound);
 	
 protected:
   // derived morph classes changes these

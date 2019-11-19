@@ -21,13 +21,14 @@ void DisplayList::advance(float deltaTime)
   }
 }
 
-void DisplayList::addDisplayObject(Character* ch, int depth)
+void DisplayList::addDisplayObject(Character* ch, int depth, const Matrix& mat)
 {
 	//TODO: if need to check the ch is already in the list
 	ch->setDepth(depth);
 	
 	DisplayObjectInfo di;
 	di.setCharacter(ch);
+	di.character->setMatrix(mat);
 	
 	int index = findIndexByDepth(depth);
 	_displayObjectArray.insert(_displayObjectArray.begin()+index, di);
